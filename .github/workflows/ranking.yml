@@ -1,0 +1,33 @@
+
+name: GUD PVP TOP 10
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  update-ranking:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      - name: Przygotuj Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Zainstaluj biblioteki
+        run: pip install -r requirements.txt
+
+      - name: Aktualizuj TOP 10
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          ROBLOX_API_KEY: ${{ secrets.ROBLOX_API_KEY }}
+          DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+        run: python GUD.py
