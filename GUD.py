@@ -213,4 +213,4 @@ async def on_ready():
         leaderboard_loop.start()
 
 
-bot.run(MTU2NzU2ODQxNDc4MjkxODcwNg.GWOFH9._0jYTePgw-bps4f_wkeUdKEEV0h40Mdio51qdo)
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
